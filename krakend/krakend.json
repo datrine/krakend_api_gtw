@@ -1,0 +1,82 @@
+{
+    "version": 3,
+    "extra_config": {
+        "security/cors": {
+            "allow_methods": [
+                "POST",
+                "GET",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "OPTIONS",
+                "PATCH"
+            ],
+            "allow_origins": [
+                "*"
+            ],
+            "max_age": "12h"
+        },
+        "router": {
+            "return_error_msg": true
+        }
+    },
+    "output_encoding": "json",
+    "name": "Turso application",
+    "debug_endpoint": true,
+    "endpoints": [
+        {
+            "backend": [
+                {
+                    "url_pattern": "/users",
+                    "host": [
+                        "http://backend:3000"
+                    ],
+                    "method": "POST",
+                    "extra_config": {
+                        "backend/http": {
+                            "return_error_code": true
+                        }
+                    }
+                }
+            ],
+            "endpoint": "/app/api/v1/users",
+            "method": "POST"
+        },
+        {
+            "backend": [
+                {
+                    "url_pattern": "/users/{email}",
+                    "host": [
+                        "http://backend:3000"
+                    ],
+                    "method": "POST",
+                    "extra_config": {
+                        "backend/http": {
+                            "return_error_code": true
+                        }
+                    }
+                }
+            ],
+            "endpoint": "/app/api/v1/users/{email}",
+            "method": "GET"
+        },
+        {
+            "backend": [
+                {
+                    "url_pattern": "/auth/login/basic",
+                    "host": [
+                        "http://backend:3000"
+                    ],
+                    "method": "POST",
+                    "extra_config": {
+                        "backend/http": {
+                            "return_error_code": true
+                        }
+                    }
+                }
+            ],
+            "endpoint": "/app/api/v1/login/basic",
+            "method": "POST"
+        }
+    ]
+}

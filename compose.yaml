@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    networks:
+      - private
+    ports: 
+      - 3000:3000
+
+  api-gtw:
+    build:
+      context: ./krakend
+      dockerfile: Dockerfile
+    networks:
+      - public
+      - private
+    ports: 
+      - 8000:8080
+
+networks:
+  private:
+  public:
